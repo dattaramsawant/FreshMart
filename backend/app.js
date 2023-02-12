@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -13,7 +13,8 @@ app.use(cors());
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json({limit: '500mb', extended: true}));
+
+app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({ secret: process.env.SECRET_KEY, resave: false, saveUninitialized: false }));
 
@@ -35,31 +36,33 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
-const indexRouter = require('./routes/index');
 
+const indexRouter = require('./routes/index');
 app.use('/api', indexRouter);
 
+
 app.use((req, res) => {
-    res.status(400).json({
-        message: "Url not found"
-    });
+  res.status(400).json({
+      message: "Url not found"
+  });
 });
 
+// error handler
 app.use(function (err, req, res, next) {
-    if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
-        console.error(err);
-    }
-    res.status(500).json({ message: err.message });
+  if (process.env.NODE_ENV === 'test' || process.env.NODE_ENV === 'development') {
+      console.error(err);
+  }
+  res.status(500).json({ message: err.message });
 });
 
 process.on('uncaughtException', function (err) {
-    console.error((new Date).toUTCString() + ' uncaughtException:', err.message)
-    process.exit(1);
+  console.error((new Date).toUTCString() + ' uncaughtException:', err.message)
+  process.exit(1);
 });
 
 process.on('unhandledRejection', function (err) {
-    console.error((new Date).toUTCString() + ' unhandledRejection:', err.message)
-    process.exit(1);
+  console.error((new Date).toUTCString() + ' unhandledRejection:', err.message)
+  process.exit(1);
 });
 
 module.exports = app;
