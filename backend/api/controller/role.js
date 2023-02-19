@@ -1,3 +1,4 @@
+const { SUCCESS, FAILED } = require("../../constants/constants");
 const models = require("../../models");
 const { paginationWithPageNumberPageSize } = require("../../utils/pagination");
 const sequelize = models.Sequelize;
@@ -14,7 +15,7 @@ exports.createRole = async(req,res,next)=>{
 
     if(checkRole.length){
         return res.status(404).json({
-            status:"Failed"
+            status:FAILED
         })
     }
 
@@ -23,7 +24,7 @@ exports.createRole = async(req,res,next)=>{
     })
 
     return res.status(201).json({
-        status:"Success",
+        status:SUCCESS,
         message:"Role created successfully."
     })
 }
@@ -34,15 +35,11 @@ exports.getRoles = async(req,res,next)=>{
             model: models.users,
             as: 'user',
             attributes: ['id','firstName','lastName']
-        },{
-            model: models.users,
-            as: 'userId',
-            attributes: ['id','firstName','lastName']
         }]
     })
 
     return res.status(200).json({
-        status:"Success",
+        status:SUCCESS,
         data: data
     })
 }

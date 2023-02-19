@@ -4,6 +4,7 @@ const jwt=require('jsonwebtoken');
 const sha1 = require('sha1');
 const moment = require('moment');
 const { sendEmail } = require('../../utils/sendMail');
+const { SUCCESS, FAILED } = require('../../constants/constants');
 
 exports.login=async(req,res,next)=>{
     const {email,password}=req.body;
@@ -16,7 +17,7 @@ exports.login=async(req,res,next)=>{
 
     if(!checkUser){
         return res.status(404).json({
-            status:"Failed",
+            status:FAILED,
             message:'Invalid email or password'
         })
     }
@@ -25,7 +26,7 @@ exports.login=async(req,res,next)=>{
 
     if(!matchPassword){
         return res.status(404).json({
-            status:"Failed",
+            status:FAILED,
             message:"Invalid email or password"
         })
     }
@@ -55,7 +56,7 @@ exports.login=async(req,res,next)=>{
     })
 
     res.status(200).json({
-        status:"Success",
+        status:SUCCESS,
         message:"User logged in successfully",
         accessToken,
         user:{
@@ -94,11 +95,11 @@ exports.refreshToken=async(req,res)=>{
                     id: checkUser.id
                 }},
                 process.env.ACCESS_TOKEN,
-                {expiresIn:'15m'}
+                {expiresIn:'7d'}
             )
 
             res.status(200).json({
-                status:"Success",
+                status:SUCCESS,
                 message:"User logged in successfully",
                 accessToken,
                 user:{
@@ -117,7 +118,7 @@ exports.logout=async(req,res)=>{
     if(!cookies.jwt) return res.sendStatus(204)
     res.clearCookie('jwt',{httpOnly: true, secure: true})
     return res.status(200).json({
-        status:"Success",
+        status:SUCCESS,
         message:"User logged out"
     })
 }
@@ -130,7 +131,7 @@ exports.forgotPassword=async(req,res)=>{
         }
     })
 
-    if(!checkUser) return res.status(404).json({status:"Failed",message:"User not found"})
+    if(!checkUser) return res.status(404).json({status:FAILED,message:"User not found"})
 
     const sendToken=await sha1(`$%${moment().format()}@#`);
     console.log('sendToken', sendToken)

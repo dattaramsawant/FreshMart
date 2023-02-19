@@ -1,6 +1,7 @@
 const models = require("../../models");
 const bcrypt = require('bcrypt');
 const { paginationWithPageNumberPageSize } = require("../../utils/pagination");
+const { SUCCESS, FAILED } = require("../../constants/constants");
 const sequelize = models.Sequelize;
 const Op = sequelize.Op;
 const saltRounds = 10;
@@ -16,7 +17,7 @@ exports.createUser = async(req,res,next)=>{
 
     if(checkUser.length){
         return res.status(404).json({
-            status:'Failed',
+            status:FAILED,
             message: "Email already used."
         })
     }
@@ -27,7 +28,7 @@ exports.createUser = async(req,res,next)=>{
     })
 
     return res.status(201).json({
-        status: "Success",
+        status: SUCCESS,
         message: "User created successfully"
     })
 }
@@ -65,7 +66,7 @@ exports.getUser=async(req,res,next)=>{
     })
 
     return res.status(200).json({
-        status:'Success',
+        status:SUCCESS,
         data: userData
     })
 }
@@ -84,13 +85,13 @@ exports.getUserById=async(req,res,next)=>{
 
     if(!findUser){
         return res.status(404).json({
-            status:"Failed",
+            status:FAILED,
             message:"User not found"
         })
     }
 
     return res.status(200).json({
-        status:"Success",
+        status:SUCCESS,
         data: findUser
     })
 }
@@ -109,7 +110,7 @@ exports.removeUsers=async(req,res,next)=>{
 
     if(!findUser.length){
         return res.status(404).json({
-            status:'Failed',
+            status:FAILED,
             message:"User not found"
         })
     }
@@ -128,7 +129,7 @@ exports.removeUsers=async(req,res,next)=>{
     )
 
     return res.status(200).json({
-        status:"Success",
+        status:SUCCESS,
         data:{
             deletedUserId: findUser,
             userNotFound: inValidUser
@@ -150,7 +151,7 @@ exports.activateUsers=async(req,res,next)=>{
 
     if(!findUser.length){
         return res.status(404).json({
-            status:'Failed',
+            status:FAILED,
             message:"User not found"
         })
     }
@@ -169,7 +170,7 @@ exports.activateUsers=async(req,res,next)=>{
     )
 
     return res.status(200).json({
-        status:"Success",
+        status:SUCCESS,
         data:{
             activateUserId: findUser,
             userNotFound: inValidUser
@@ -189,13 +190,13 @@ exports.changePassword=async(req,res)=>{
         }
     })
 
-    if(!checkUser) return res.status(404).json({status:"Failed",message:"User not found"})
+    if(!checkUser) return res.status(404).json({status:FAILED,message:"User not found"})
 
     const checkCurrentPassword = await bcrypt.compare(currentPassword,checkUser.password)
 
-    if(!checkCurrentPassword) return res.status(404).json({status:"Failed",message:"Current password not match"})
+    if(!checkCurrentPassword) return res.status(404).json({status:FAILED,message:"Current password not match"})
 
-    if(newPassword !== confirmPassword) return res.status(404).json({status:"Failed",message:"new password and confirm password not same."})
+    if(newPassword !== confirmPassword) return res.status(404).json({status:FAILED,message:"new password and confirm password not same."})
 
     const hashPassword= await bcrypt.hash(newPassword,saltRounds)
 
@@ -207,7 +208,7 @@ exports.changePassword=async(req,res)=>{
     )
 
     return res.status(200).json({
-        status:"Success",
+        status:SUCCESS,
         message:"Password update successfully."
     })
 }

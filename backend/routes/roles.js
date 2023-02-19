@@ -5,7 +5,7 @@ const validationError = require('../api/middleware/validationError');
 const errorWrap = require('../utils/errorWrap')
 const route = express.Router();
 
-route.get('/',errorWrap.wrapper(getRoles))
+route.get('/',checkAuth,errorWrap.wrapper(getRoles))
 
 route.post('/',checkAuth,errorWrap.wrapper(createRole))
 

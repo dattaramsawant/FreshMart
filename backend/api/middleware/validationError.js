@@ -2,7 +2,6 @@ const { validationResult } = require("express-validator")
 
 module.exports = (req, res, next) => {
     const errors = validationResult(req)
-    console.log('errors', errors)
     let errorsObj={}
 
     errors.errors.map(err=>{

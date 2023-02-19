@@ -1,5 +1,5 @@
 module.exports = (sequelize,DataTypes) => {
-    const Product = sequelize.define('products',{
+    const Category = sequelize.define('categories',{
         name:{
             type: DataTypes.STRING
         },
@@ -14,22 +14,22 @@ module.exports = (sequelize,DataTypes) => {
             defaultValue: false
         }
     },{
-        tableName:'products',
+        tableName:'categories',
         timestamps: true
     })
 
 
-    Product.addScope('activeProduct',{
+    Category.addScope('activeCategory',{
         where:{
             isDeleted: 0
         }
     })
 
-    Product.addScope('inActiveProduct',{
+    Category.addScope('inActiveCategory',{
         where:{
             isDeleted: 1
         }
     })
 
-    return Product
+    return Category
 }
