@@ -1,0 +1,68 @@
+.inputContainer{
+    /* display: grid; */
+    width: 100%;
+    margin-bottom: 10px;
+    /* min-height: 67px; */
+}
+
+.label{
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    position: relative;
+    width: fit-content;
+    color: var(--COLOR_GRAY_2);
+}
+
+.requiredSign{
+    position: absolute;
+    font-size: 25px;
+    top: -5px;
+    right: -10px;
+}
+
+.input{
+    width: 100%;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 12px;
+    height: 18px;
+}
+
+.input:focus{
+    border-color: var(--COLOR_GREEN_1);
+    box-shadow: 0 0 3px 0px var(--COLOR_GREEN_1);
+}
+
+.input:disabled{
+    background-color: var(--COLOR_GRAY_3);
+    cursor: not-allowed;
+}
+
+.errorMessage{
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 5px;
+    color: var(--COLOR_RED_1);
+}
+
+.normalInput{
+    border-color:  var(--COLOR_GRAY_1);
+}
+
+.errorInput{
+    border-color: var(--COLOR_RED_1);
+}
+
+.inputBox{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.passwordIcon{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}

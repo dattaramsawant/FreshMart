@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+:root{
+  --COLOR_GREEN_1: #7dc023;
+  --COLOR_BLACK_1: #000;
+  --COLOR_WHITE_1: #fff;
+  --COLOR_WHITE_2:#f8f9fd;
+  --COLOR_RED_1: #ff0000;
+  --COLOR_GRAY_1: #ebe7e7;
+  --COLOR_GRAY_2: #808080;
+  --COLOR_GRAY_3: #dddddd;
+}
+
+::-webkit-input-placeholder { /* Edge */
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+::placeholder {
+  font-size: 10px;
+  opacity: 0.7;
+}

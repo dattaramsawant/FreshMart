@@ -1,0 +1,31 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.navbarLogo{
+    margin-left: 50px;
+}
+
+.linkContainer{
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    list-style: none;
+}
+
+.link{
+    color: var(--COLOR_BLACK_1);
+    font-weight: 600;
+}
+
+.activeLink{
+    color: var(--COLOR_GREEN_1);
+    font-weight: 600;
+    text-decoration: underline;
+}

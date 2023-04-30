@@ -1,0 +1,21 @@
+.button{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.primaryButton{
+    color: var(--COLOR_WHITE_1);
+    background-color: var(--COLOR_GREEN_1);
+}
+
+.primaryButton:hover{
+    color: var(--COLOR_GREEN_1);
+    background-color: transparent;
+    border: 2px solid var(--COLOR_GREEN_1);
+
+}

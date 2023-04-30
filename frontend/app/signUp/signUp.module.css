@@ -1,0 +1,10 @@
+.formContainer{
+    max-width: 400px;
+    margin: 50px auto;
+}
+
+.gridTwoAuto{
+    display: grid;
+    grid-template-columns: repeat(2,auto);
+    gap: 10px;
+}

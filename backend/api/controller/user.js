@@ -16,7 +16,7 @@ exports.createUser = async(req,res,next)=>{
     })
 
     if(checkUser.length){
-        return res.status(404).json({
+        return res.status(200).json({
             status:FAILED,
             message: "Email already used."
         })

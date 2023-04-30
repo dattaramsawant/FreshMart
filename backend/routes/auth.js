@@ -9,9 +9,9 @@ const route = express.Router();
 
 route.post('/login',authValidation,validationError,requestLimiter,errorWrap.wrapper(authController.login))
 
-route.post('/refresh',authValidation,validationError,errorWrap.wrapper(authController.refreshToken))
+route.post('/refresh',errorWrap.wrapper(authController.refreshToken))
 
-route.post('/logout',authValidation,validationError,errorWrap.wrapper(authController.logout))
+route.post('/logout',errorWrap.wrapper(authController.logout))
 
 route.post('/test',errorWrap.wrapper(authController.forgotPassword))
 module.exports = route;

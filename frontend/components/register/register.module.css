@@ -1,0 +1,52 @@
+.registerContainer{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.leftSide{
+    width: 50%;
+    height: 100%;
+    background-image: url('../../public/images/registerLeftBG.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.rightSide{
+    width: 50%;
+    height: 100%;
+    background-color: var(--COLOR_WHITE_1);
+}
+
+.leftSideHeader{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 90%;
+    margin: auto;
+}
+.backIcon{
+    cursor: pointer;
+    z-index: 1;
+}
+
+.welcomeText{
+    color: var(--COLOR_WHITE_1);
+    text-align: center;
+    width: 100%;
+    margin-left: -25px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.rightSideContainer{
+    padding: 20px;
+    height: calc(100% - 40px);
+}
+
+.pageName{
+    color: var(--COLOR_GREEN_1)
+}
