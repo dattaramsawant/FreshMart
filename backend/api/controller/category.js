@@ -15,7 +15,7 @@ exports.createCategory = async(req,res,next)=>{
     })
 
     if(checkCategory.length){
-        return res.status(404).json({
+        return res.status(200).json({
             status:FAILED,
             message: "Category is already present"
         })
@@ -88,7 +88,7 @@ exports.removeCategory=async(req,res,next)=>{
     findCategory = findCategory.map(a=>a.id)
 
     if(!findCategory.length){
-        return res.status(404).json({
+        return res.status(200).json({
             status: FAILED,
             message: "Category not found"
         })
@@ -129,7 +129,7 @@ exports.activateCategories=async(req,res,next)=>{
     findCategory = findCategory.map(a=>a.id)
 
     if(!findCategory.length){
-        return res.status(404).json({
+        return res.status(200).json({
             status: FAILED,
             message: "Category not found"
         })
@@ -168,7 +168,7 @@ exports.updateCategory = async(req,res,next)=>{
     })
 
     if(!checkCategory){
-        return res.status(404).json({
+        return res.status(200).json({
             status: FAILED,
             message: "Category not found"
         })

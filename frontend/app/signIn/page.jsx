@@ -3,14 +3,14 @@
 import Button from '@/components/button'
 import Input from '@/components/input'
 import useForm from '@/hooks/useForm'
-import useRefreshToken from '@/hooks/useRefreshToken'
-import { createUser } from '@/services/user'
+import { login } from '@/services/auth'
 import { constant } from '@/utils/constants'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React, { use, useMemo } from 'react'
 import styles from './signIn.module.css'
 
 const SignIn = () => {
+    const router = useRouter()
     const defaultValue = {
         email: "",
         password: ""
@@ -37,16 +37,13 @@ const SignIn = () => {
 
     const { values, errors, handleChange, handleBlur, handleSubmit } = useForm({ defaultValue, validations })
 
-    const onChange = (e) => {
-        console.log('e', e)
-    }
     const onSubmit = async() => {
         const payload={...values}
-        const res = await createUser(payload)
+        const res = await login(payload)
         if(res.status === constant.FAILED){
 
         }else{
-            redirect('/signIn')
+            router.push('/signUp')
         }
     }
 

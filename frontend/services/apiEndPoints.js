@@ -1,4 +1,6 @@
 export const API_URL={
     REFRESH_TOKEN: 'auth/refresh',
-    USER: 'user'
+    LOGIN: 'auth/login',
+    USER: 'user',
+    CATEGORY: 'category'
 }

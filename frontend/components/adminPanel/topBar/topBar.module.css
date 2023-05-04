@@ -1,0 +1,16 @@
+.topBarContainer{
+    height: 50px;
+    position: sticky;
+    top: 0;
+    margin: 10px;
+    background-color: var(--COLOR_PURPLE_1);
+    border-radius: 8px;
+    padding: 0 20px;
+}
+
+.pageName{
+    font-size: 18px;
+    line-height: 50px;
+    font-weight: 700;
+    color: var(--COLOR_WHITE_1);
+}

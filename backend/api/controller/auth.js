@@ -16,7 +16,7 @@ exports.login=async(req,res,next)=>{
     })
 
     if(!checkUser){
-        return res.status(404).json({
+        return res.status(200).json({
             status:FAILED,
             message:'Invalid email or password'
         })
@@ -25,7 +25,7 @@ exports.login=async(req,res,next)=>{
     const matchPassword= await bcrypt.compare(password,checkUser.password)
 
     if(!matchPassword){
-        return res.status(404).json({
+        return res.status(200).json({
             status:FAILED,
             message:"Invalid email or password"
         })
@@ -50,7 +50,7 @@ exports.login=async(req,res,next)=>{
     )
 
     res.cookie('jwt',refreshToken,{
-        httpOnly: true, //accessible only by web server 
+        httpOnly: false, //accessible only by web server 
         secure: true, //https
         maxAge: 7 * 24 * 60 * 60 * 1000 //cookie expiry: set to match rT
     })
@@ -71,6 +71,7 @@ exports.login=async(req,res,next)=>{
 exports.refreshToken=async(req,res)=>{
     const cookies=req.cookies;
 
+    console.log('cookies', cookies)
     if (!cookies?.jwt) return res.status(401).json({ message: 'Unauthorized' })
 
     const refreshToken=cookies.jwt
@@ -131,7 +132,7 @@ exports.forgotPassword=async(req,res)=>{
         }
     })
 
-    if(!checkUser) return res.status(404).json({status:FAILED,message:"User not found"})
+    if(!checkUser) return res.status(200).json({status:FAILED,message:"User not found"})
 
     const sendToken=await sha1(`$%${moment().format()}@#`);
     console.log('sendToken', sendToken)

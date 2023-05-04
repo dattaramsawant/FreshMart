@@ -8,7 +8,6 @@ var classNames = require('classnames')
 var _ = require('lodash')
 
 const Input = (props) => {
-    console.log('props', props)
     const [showPassword,setShowPassword]=useState(false)
 
     const inputClass = useMemo(()=>props.error ? styles.errorInput : styles.normalInput ,[props.error,props.inputProps])

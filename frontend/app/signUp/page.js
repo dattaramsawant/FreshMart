@@ -5,7 +5,7 @@ import Input from '@/components/input'
 import useForm from '@/hooks/useForm'
 import { createUser } from '@/services/user'
 import { constant } from '@/utils/constants'
-import { redirect, useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import React, { useMemo } from 'react'
 import styles from './signUp.module.css'
 
@@ -62,9 +62,6 @@ const SignUp = () => {
 
     const { values, errors, handleChange, handleBlur, handleSubmit } = useForm({ defaultValue, validations })
 
-    const onChange = (e) => {
-        console.log('e', e)
-    }
     const onSubmit = async() => {
         const payload={...values}
         const res = await createUser(payload)
